@@ -51,6 +51,7 @@ else
                   <th>Tratamiento</th>
                   <th>Tipo</th>
                   <th>Tecnico</th>
+                  <th>Descripcion</th>
                 </thead>
                 <tbody>
                   <?php
@@ -62,13 +63,14 @@ else
                         echo "<td>".$rs['folio']."</td>";
                         echo "<td>".$rs['Optica']."</td>";
                         echo "<td>".$rs['Ciudad']."</td>";
-                        echo "<td>".$rs['fecha']."</td>";
+                        echo "<td>".$rs['Fecha']."</td>";
                         echo "<td>".$rs['Armazon']."</td>";
                         echo "<td>".$rs['Mica']."</td>";
                         echo "<td>".$rs['Material']."</td>";
                         echo "<td>".$rs['Tratamiento']."</td>";
                         echo "<td>".$rs['Tipo']."</td>";
                         echo "<td>".$rs['Nombre del Tecnico']."</td>";
+                        echo "<td>".$rs['Descripcion']."</td>";
                       echo "</tr>";
                       }
                     }

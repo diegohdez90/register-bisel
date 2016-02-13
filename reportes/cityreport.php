@@ -14,7 +14,7 @@
 
 if (!empty($_GET['estado']) || !empty($_GET['ciudad'])){
      $edo = str_replace(' ', '', $_GET['estado']); 
-     $city = str_replace(' ', '', $_GET['ciudad']);
+     $city = $_GET['ciudad'];
 }
 else 
     header("Location:index.html");
@@ -52,6 +52,7 @@ else
                   <th>Tratamiento</th>
                   <th>Tipo</th>
                   <th>Tecnico</th>
+                  <th>Descripcion</th>
                 </thead>
                 <tbody>
                   <?php
@@ -70,6 +71,7 @@ else
                         echo "<td>".$rs['Tratamiento']."</td>";
                         echo "<td>".$rs['Tipo']."</td>";
                         echo "<td>".$rs['Nombre del Tecnico']."</td>";
+                        echo "<td>".$rs['Descripcion']."</td>";
                       echo "</tr>";
                       }
                     }
