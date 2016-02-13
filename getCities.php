@@ -16,7 +16,7 @@ if (!empty($_GET['estado'])){
      $edo = str_replace(' ', '', $_GET['estado']);   
 }
 else 
-    header("Location:index.php");
+    header("Location:index.html");
 
     include 'connection.php';
     $my_sql_conn =  new mysqli($servername,$user,$pwd,$db);
@@ -27,29 +27,33 @@ else
         <div class="container-fluid">
             <div class="row"><h3>Registra tus pedidos</h3></div>
             <div class="row">
-            </div>
-            <div class="row">
-
-                <form class="form-inline" role="form" action="selectOptic.php" method="get">
+                <h4>Ciudades de <?php echo $edo; ?></h4>
+                <form class="form-horizontal" role="form" action="selectOptic.php" method="get">
                   <div class="form-group">
                     <div class="form-group">
                       <input type="hidden" class="form-control" name="estado" value="<?php echo $edo; ?>">
                     </div>
-                    <label class="sr-only" for="email">Ciudad</label>
-                    <select class="form-control" name="ciudad">
-                        <option value="">Selecciona tu ciudad</option>
-                        <?php
-                            $thequery = $my_sql_conn->query("select ciudad from ciudad where Estado='$edo'");
-                            while($rs = $thequery->fetch_array(MYSQLI_ASSOC)){
-                        ?>
-                            <option value="<?php echo $rs['ciudad'];?>"><?php echo $rs['ciudad']; ?></option>
-                        <?php
-                            }
-                        ?>
-                    </select>
+                    <label class="control-label col-sm-2" for="email">Ciudad</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="ciudad">
+                            <option value="">Selecciona tu ciudad</option>
+                            <?php
+                                $thequery = $my_sql_conn->query("select ciudad from ciudades where Estado='$edo'");
+                                while($rs = $thequery->fetch_array(MYSQLI_ASSOC)){
+                            ?>
+                                <option value="<?php echo $rs['ciudad'];?>"><?php echo $rs['ciudad']; ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  </div>
+              </form>
             </div>
         </div>
     </div>

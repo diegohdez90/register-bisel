@@ -17,7 +17,7 @@ if (!empty($_GET['ciudad'])){
      $city = $_GET['ciudad'];
 }
 else 
-    header("Location:index.php");
+    header("Location:index.html");
 
     include 'connection.php';
     $my_sql_conn =  new mysqli($servername,$user,$pwd,$db);
@@ -28,29 +28,29 @@ else
         <div class="container-fluid">
             <div class="row"><h3>Registra tus pedidos</h3></div>
             <div class="row">
-            </div>
-            <div class="row">
-
-                <form class="form-inline" role="form" action="register.php" method="get">
+              <h4>Opticas de <?php echo $city; ?></h4>
+                <form class="form-horizontal" role="form" action="register.php" method="get">
                   <div class="form-group">
-                    <div class="form-group">
-                      <input type="hidden" class="form-control" name="estado" value="<?php echo $edo; ?>">
-                      <input type="hidden" class="form-control" name="ciudad" value="<?php echo $city; ?>">
+                    <label class="control-label col-sm-2" for="email">Optica</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" name="optica">
+                          <option value="">Selecciona tu Optica</option>
+                          <?php
+                              $thequery = $my_sql_conn->query("select id,optica.nombre as optica,ubicacion from optica where Estado='$edo' and ciudad='$city'");
+                              while($rs = $thequery->fetch_array(MYSQLI_ASSOC)){
+                          ?>
+                              <option value="<?php echo $rs['id'];?>"><?php echo $rs['optica']." (".$rs['ubicacion'].")"; ?></option>
+                          <?php
+                              }
+                          ?>
+                      </select>
                     </div>
-                    <label class="sr-only" for="email">Optica</label>
-                    <select class="form-control" name="optica">
-                        <option value="">Selecciona tu Optica</option>
-                        <?php
-                            $thequery = $my_sql_conn->query("select optica.nombre as optica from optica where Estado='$edo' and ciudad='$city'");
-                            while($rs = $thequery->fetch_array(MYSQLI_ASSOC)){
-                        ?>
-                            <option value="<?php echo $rs['optica'];?>"><?php echo $rs['optica']; ?></option>
-                        <?php
-                            }
-                        ?>
-                    </select>
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  </div>
                 </form>
             </div>
         </div>

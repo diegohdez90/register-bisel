@@ -31,35 +31,36 @@ $('document').ready(function () {
         <div class="container-fluid">
             <div class="row"><h3>Registra tus pedidos</h3></div>
             <div class="row">
-
-                <form class="form-inline" role="form" method="get" action="getCities.php" enctype="multipart/form-data">
+              <h4>Selecciona Estado</h4>
+                <form class="form-horizontal" role="form" method="get" action="getCities.php" enctype="multipart/form-data">
                   <div class="form-group">
                     <label class="sr-only" for="email">Estado</label>
                     <input name="estado" type="hidden" class="form-control" id="estadoSeleccionado">
                   </div>
                   <div class="form-group">
-                    <label class="sr-only" for="email">Estado</label>
-                    <select id="estados" class="form-control">
-                        <option value="">Selecciona tu Estado</option>
-                        <?php
-                            $thequery = $my_sql_conn->query('select * from Estados');
-                            while($rs = $thequery->fetch_array(MYSQLI_ASSOC)){
-                        ?>
-                            <option value="<?php echo $rs['Estado'];?>"><?php echo $rs['Estado']; ?></option>
-                        <?php
-                            }
-                            $my_sql_conn->close();
-                        ?>
-                    </select>
+                    <label class="control-label col-sm-2" for="email">Estado</label>
+                    <div class="col-sm-10">
+                      <select id="estados" class="form-control">
+                          <option value="">Selecciona tu Estado</option>
+                          <?php
+                              $thequery = $my_sql_conn->query('select * from Estados');
+                              while($rs = $thequery->fetch_array(MYSQLI_ASSOC)){
+                          ?>
+                              <option value="<?php echo $rs['Estado'];?>"><?php echo $rs['Estado']; ?></option>
+                          <?php
+                              }
+                              $my_sql_conn->close();
+                          ?>
+                      </select>
+                    </div>
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  </div>
                 </form>
             </div>
-          <div class="row demo"></div>
-          <div class="row">
-            <p>
-          </p>
-          </div>
         </div>
     </div>
   </div>
