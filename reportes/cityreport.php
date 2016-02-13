@@ -12,8 +12,9 @@
 </head>
 <?php
 
-if (!empty($_GET['estado'])){
-     $edo = $_GET['estado'];   
+if (!empty($_GET['estado']) || !empty($_GET['ciudad'])){
+     $edo = str_replace(' ', '', $_GET['estado']); 
+     $city = str_replace(' ', '', $_GET['ciudad']);
 }
 else 
     header("Location:index.html");
@@ -29,11 +30,11 @@ else
   <div class="container">
     <div class="jumbotron">
         <div class="container-fluid">
-            <div class="row"><h3>Reporte de Pedidos del estado de <?php echo $edo; ?></h3></div>
+            <div class="row"><h3>Reporte tus pedidos de <?php echo $city; ?>, <?php echo $edo; ?></h3></div>
             <div class="row">
               <?php
 
-                  $resultState = $my_sql_conn->query("SELECT id,nombre from optica where estado='$edo'");
+                  $resultState = $my_sql_conn->query("SELECT id,nombre from optica where estado='$edo' and ciudad='$city'");
                   $opticState = array();
                   while ($rs = $resultState->fetch_array(MYSQLI_ASSOC)) {
                     $opticState[$rs["id"]] = $rs['nombre'];
@@ -43,7 +44,7 @@ else
                 <thead>
                   <th>Folio</th>
                   <th>Optica</th>
-                  <th>Ciudad</th>
+                  <th>Estado</th>
                   <th>Fecha</th>
                   <th>Armazon</th>
                   <th>Mica</th>
@@ -61,7 +62,7 @@ else
                       echo "<tr>";
                         echo "<td>".$rs['folio']."</td>";
                         echo "<td>".$rs['Optica']."</td>";
-                        echo "<td>".$rs['Ciudad']."</td>";
+                        echo "<td>".$rs['Estado']."</td>";
                         echo "<td>".$rs['fecha']."</td>";
                         echo "<td>".$rs['Armazon']."</td>";
                         echo "<td>".$rs['Mica']."</td>";

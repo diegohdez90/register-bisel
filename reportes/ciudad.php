@@ -32,7 +32,7 @@ $('document').ready(function () {
             <div class="row"><h3>Reporte de Pedidos</h3></div>
             <div class="row">
               <h4>Selecciona Estado</h4>
-                <form class="form-horizontal" role="form" method="get" action="estadoreport.php" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="get" action="getCities.php" enctype="multipart/form-data">
                   <div class="form-group">
                     <label class="sr-only" for="email">Estado</label>
                     <input name="estado" type="hidden" class="form-control" id="estadoSeleccionado">
